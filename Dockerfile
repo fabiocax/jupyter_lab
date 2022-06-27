@@ -8,5 +8,6 @@ RUN pip install --upgrade pip
 RUN pip install --upgrade certifi
 RUN pip install jupyterlab jupyterlab-git
 EXPOSE 8000
-ENV JUPYTER_LAB_TOKEN="1234"
+#VOLUME projects/
+#ENV JUPYTER_LAB_TOKEN="1234"
 CMD ["sh","run.sh"]
