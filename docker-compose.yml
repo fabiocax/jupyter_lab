@@ -1,0 +1,14 @@
+
+services:
+  lab:
+    build: .
+    ports:
+      - "8000:8000"
+      - "5000:5000"
+    environment:
+      - JUPYTER_LAB_TOKEN="12345" 
+    volumes:
+      - /mnt:/app/projects
+
+    image: shotofw/jupyterlab 
+
