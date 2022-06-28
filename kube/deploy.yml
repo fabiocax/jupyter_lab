@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jupyterlab-fabiocax
+  namespace: jupyterlab
+  labels:
+    app: jupyterlab-fabiocax
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jupyterlab-fabiocax
+  template:
+    metadata:
+      labels:
+        app: jupyterlab-fabiocax
+
+    spec:
+      containers:
+      - name: jupyterlab-fabiocax
+        image: shotofw/jupyterlab:1.4
+        ports:
+        - containerPort: 8000
+        - containerPort: 5000
+        env:
+        - name: JUPYTER_LAB_TOKEN
+          value: "abcd12345"
+        - name: JUPYTER_PREFIX
+          value: "fabiocax"
+
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: jupyterlab-fabiocax
+  name: jupyterlab-fabiocax
+  namespace: jupyterlab
+spec:
+  selector:
+    app: jupyterlab-fabiocax
+  ports:
+    - name: http
+      port: 8001
+      protocol: TCP
+      targetPort: 8000
+  ports:
+    - name: http
+      port: 5001
+      protocol: TCP
+      targetPort: 5000
+
+
