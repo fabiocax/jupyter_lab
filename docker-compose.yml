@@ -6,7 +6,8 @@ services:
       - "8000:8000"
       - "5000:5000"
     environment:
-      - JUPYTER_LAB_TOKEN="12345" 
+      - JUPYTER_LAB_TOKEN="12345"
+      - JUPYTER_PREFIX="loucura" 
     volumes:
       - /mnt:/app/projects
 
